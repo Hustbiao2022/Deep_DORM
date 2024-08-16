@@ -27,8 +27,8 @@ path:
 val:
   min_devide_by: 8
   crop_size_d: 1
-  crop_size_h: 5
-  crop_size_w: 1
+  crop_size_h: 30
+  crop_size_w: 2
 
   xy_clear_border: 0
 
