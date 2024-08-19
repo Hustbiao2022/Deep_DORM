@@ -63,7 +63,6 @@ def Inference_cfg():
     row_2 = 5 + g_row
     Label(win, text="Validation path:").grid(column=0, row=row_2, sticky=tk.N)
     v_path_Choose = ttk.Entry(win, width=40, textvariable=v_path)
-    v_path.set(r'I:\Paper\New_discovery\Dorm_torch\test_data\LR_X1_9_18_BG_0p5_GS_0p03_PS_200')
     v_path_Choose.grid(column=1, row=row_2, columnspan=7, sticky=tk.W)
     lr_path_Choose_button = ttk.Button(win, text="Choose", command=select_LR_Path, style="test.TButton")
     lr_path_Choose_button.grid(column=12, row=row_2, sticky=tk.E)
