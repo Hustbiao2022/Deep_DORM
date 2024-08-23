@@ -73,15 +73,11 @@ def predict_tile(model, x, net_axes_in_div_by, block_size, overlap, method="cove
     im_size_padded = [((g + 1) * b if o != 0 else g * b) for g, b, o in zip(block_size, block_img_size, overlap)]
 
     def pad_list_to_valid(input_list, target_shape):
-        padded_list = []
+        for idx, (value, target) in enumerate(zip(input_list, target_shape)):
+            if value < target:
+                input_list[idx] = (target + 7) // 8 * 8
 
-        for value, target in zip(input_list, target_shape):
-            if value > target:
-                padded_list.append(value)
-                new_even_value = (target + 7) // 8 * 8
-                padded_list.append(new_even_value)
-
-        return padded_list
+        return input_list
 
     im_size_padded = pad_list_to_valid(im_size_padded, [i + o // 2 for o, i in zip(overlap, x.shape)])
 
