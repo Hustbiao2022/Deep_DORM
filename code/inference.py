@@ -72,6 +72,19 @@ def predict_tile(model, x, net_axes_in_div_by, block_size, overlap, method="cove
 
     im_size_padded = [((g + 1) * b if o != 0 else g * b) for g, b, o in zip(block_size, block_img_size, overlap)]
 
+    def pad_list_to_valid(input_list, target_shape):
+        padded_list = []
+
+        for value, target in zip(input_list, target_shape):
+            if value > target:
+                padded_list.append(value)
+                new_even_value = (target + 7) // 8 * 8
+                padded_list.append(new_even_value)
+
+        return padded_list
+
+    im_size_padded = pad_list_to_valid(im_size_padded, [i + o // 2 for o, i in zip(overlap, x.shape)])
+
     pad = {
         a: (o // 2, k - i - o // 2)
         for a, o, i, k in zip(axes, overlap, x.shape, im_size_padded)
@@ -83,7 +96,6 @@ def predict_tile(model, x, net_axes_in_div_by, block_size, overlap, method="cove
     )
 
     x_pad = np.pad(x, tuple(pad[a] for a in axes), mode="reflect")
-    # tifffile.imsave(fr"D:\VSproject\pad.tif", x_pad, imagej=True)
     logger.info(f"Pad img {x.shape} => {x_pad.shape} with pad: {pad}")
     sr_size = [i * model.factor for i in x_pad.shape]
     ret = np.zeros(sr_size, dtype=np.float32)
