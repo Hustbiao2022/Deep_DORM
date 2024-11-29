@@ -59,7 +59,6 @@ def predict_tile(model, x, net_axes_in_div_by, block_size, overlap, method="cove
     overlap = __broadcast(overlap)
     net_axes_in_div_by = __broadcast(net_axes_in_div_by)
 
-    # 这里算上2 * overlap是为了后续的crop跳过边缘像素，消除“截断”现象，这种方式可以理论上保证overlap为任意值和被block块被8整除
     block_img_size = [r // b + 2 * o if b > 1 else r for r, b, o in zip(x.shape, block_size, overlap)]
     block_img_size = [int(d * np.ceil(b / d)) for b, d in zip(block_img_size, net_axes_in_div_by)]
 
@@ -156,7 +155,6 @@ def reverse_and_save_img(img, mi, ma, save_img_path, save_mip_path, scale=1, mod
     if img is None:
         return
 
-    # time.sleep(5)  # 测试是否真的是非阻塞线程
     if img.ndim == 3:
         img = np.expand_dims(img, 1)
 
@@ -240,7 +238,6 @@ def main(opt):
 if __name__ == "__main__":
     import argparse
 
-    # config_yaml_paths = ["options/test/test_CropPatch3.yml", "options/test/test_CropPatch2.yml",
     config_yaml_paths = ["options/test/test_CropPatch.yml"]
 
     for config_yaml_path in config_yaml_paths:
