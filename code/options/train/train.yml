@@ -22,8 +22,8 @@ network_D_HR:
 #### path
 
 path:
-  pretrain_model_C: J:\clb\Cell_up_load_data\Deep_DORM_final\experiments\20240813_tub_enhancementNet\models\best_C.pth
-#  pretrain_model_D: J:\clb\Cell_up_load_data\Deep_DORM_final\experiments\20240813_tub_enhancementNet\models\best_D.pth
+#  pretrain_model_C: ~
+#  pretrain_model_D: ~
   strict_load: true
 
 
@@ -32,16 +32,16 @@ train:
   lr_C: !!float 1e-4
   beta1: 0.9
   beta2: 0.99
-  niter: !!float 150000
+  niter: !!float 50000
   warmup_iter: -1  # no warm up
   #
-  #  lr_scheme: CosineAnnealingLR_Restart
-  #  T_period: [50000]
-  #  eta_min: !!float 1e-7
+  lr_scheme: CosineAnnealingLR_Restart
+  T_period: [50000]
+  eta_min: !!float 1e-7
   #
-  lr_scheme: MultiStepLR
-  lr_steps: [ 30000, 50000, 80000, 110000, 130000, 140000 ]
-  lr_gamma: 0.5
+#  lr_scheme: MultiStepLR
+#  lr_steps: [ 30000, 50000, 80000, 110000, 130000, 140000 ]
+#  lr_gamma: 0.5
 
 
   pixel_criterion_back: l1
@@ -79,11 +79,11 @@ train:
   gan_type: gan
   D_update_ratio: 1
 
-  D_init_iters: !!float 2000
+  D_init_iters: !!float 1000
 
-  val_freq: !!float 2000
+  val_freq: !!float 1000
 #### logger
 
 logger:
   print_freq: 1
-  save_checkpoint_freq: !!float 2000
+  save_checkpoint_freq: !!float 1000
