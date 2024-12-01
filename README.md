@@ -66,7 +66,7 @@ The installation takes about 5 minutes on the tested platform, though it may tak
 
 ## Inference Process
 
-Due to data size limitations, the pre-trained models are stored [here](https://drive.google.com/file/d/1vtpPooMrck1oVr3f8sfnWopzqhoDt3M2/view?usp=sharing). You will need to download and unzip them into the `experiments` folder of the original Deep-DORM demo. Example data of various organelles for testing the model can be downloaded [here](https://drive.google.com/file/d/1Dj6Rhus9lbSBoXQCIqqwz96_MP8SisE4/view?usp=sharing).
+Due to data size limitations, the pre-trained models are stored [here](https://drive.google.com/file/d/1-3rAfLrllMZDUWnQgUhWPFKFb2ahjIH3/view?usp=sharing). You will need to download and unzip them into the `experiments` folder of the original Deep-DORM demo. Example data of various organelles for testing the model can be downloaded [here](https://drive.google.com/file/d/1Dj6Rhus9lbSBoXQCIqqwz96_MP8SisE4/view?usp=sharing).
 
 
 1. Open a terminal in the `Deep-DORM` directory and run `inference.py`; the 'Validation' panel will appear.
